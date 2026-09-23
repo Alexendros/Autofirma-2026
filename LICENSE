@@ -1,0 +1,21 @@
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 2, June 1991
+
+This repository’s **code contributions** (scripts and harness) and any
+redistributed Autofirma / Cliente @firma material are under the same dual
+licensing model as the upstream project:
+
+  - GNU General Public License version 2 or later (GPL-2.0+)
+  - European Union Public Licence version 1.1 (EUPL-1.1)
+
+Upstream copyright: Agencia Estatal de Administración Digital /
+Centro de Transferencia de Tecnología (CTT), Gobierno de España.
+
+Full GPL-2.0 text: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+Full EUPL-1.1 text: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-11
+
+You may use, modify and redistribute under either licence, as permitted by
+the upstream dual-licensing terms. Documentation in this meta-repository
+is provided under the same dual licence unless a file states otherwise.
+
+SPDX-License-Identifier: GPL-2.0-or-later OR EUPL-1.1
