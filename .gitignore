@@ -1,0 +1,17 @@
+# Autofirma-2026 meta-repo — no versionar clones ni toolchains
+tools/
+clienteafirma/
+integra/
+fire/
+dist/
+packaging/stage-deb/
+packaging/stage-rpm/
+packaging/*.deb
+vectors/out/
+tests/**/target/
+docs/*.log
+.cursor/
+.idea/
+*.iml
+*.pyc
+.DS_Store

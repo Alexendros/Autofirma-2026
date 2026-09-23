@@ -1,0 +1,9 @@
+# F2 vector gate — 2026-09-23T14:10:27Z
+# baseline: BASELINE_COMMIT=0d7f3cf01fb65d2be5b245622d2c8f490f36e718 PRODUCT_VERSION=1.9.1 JDK_TARGET=1.8 UPSTREAM=https://github.com/ctt-gob-es/clienteafirma DATE=2026-09-23T11:23:37Z NOTE=master shallow clone; pom version 1.9.1 matches published Autofirma 1.9.x line 
+# jar: /home/alexendros/Aplicaciones/Fuentes/Autofirma-2026/clienteafirma/afirma-simple/target/autofirma.jar
+plain-cades.csig size=4045 sha256=9fb72cc036d7f117e28044fd5e56282aff6e6b65c3e9870c5de70b526497017b
+sample-xades.xsig size=7955 sha256=74c844b8b03c7e6db4c6838a4c7e744bdb5e4c56d21e1eaaddc3c6382a24cbda
+sample-pades.pdf size=2253651 sha256=de48f11a8a6695ce0a80ff28c35d49557adb1aa27c3e1e1918e43f771bdeab41
+facturae-signed.xml size=17212 sha256=5a454c43ca908b75544efa0475c523d8cae368665e42520d93c60bc54c71e104
+plain-cades-cosign.csig size=8026 sha256=35a968a7b22eb3dcf6e791465470d7ed1ba896e57beef6bf050ea74626c8db36
+plain-cades-countersign.csig size=8010 sha256=94c5dc2dc6fb7c5ef60501c5e9fa8c432a50f4b384e8634b45159fbdb74d04c6
