@@ -1,49 +1,45 @@
-# Readiness report — Autofirma-2026 — 2026-09-23
+# Readiness report — Autofirma-2026 — 2026-09-24
 
-**Veredicto:** BLOCKED (arranque `/repo-ending`)
+**Veredicto:** CONDITIONAL GO (MVP meta-repo)
 
-**Modo:** auditoría (no se pudo continuar)
-**Repo crítico:** [PENDIENTE] — el meta-repo aún no está en GitHub
+**Modo:** remediación parcial tras auditoría 2026-09-23  
+**Repo:** https://github.com/Alexendros/Autofirma-2026 (público)
 
-## Bloqueo de arranque
+## Resumen
 
-1. **[SEV-1]** `/home/alexendros/Aplicaciones/Fuentes/Autofirma-2026` **no es un repositorio git** (`fatal: no es un repositorio git`).
-2. Por tanto **no hay** `git remote get-url origin` apuntando a `github.com`.
-3. `gh auth status` sí está OK (cuenta `Alexendros`), pero la skill exige remoto GitHub en el workspace antes de labels, versionado o pipeline remoto.
+El bloqueo SEV-1 (sin git/remoto) está **resuelto**. CI de línea base existe y ha corrido en GitHub Actions. En **v0.1.1** se cierran los gaps de cadena de suministro del meta-repo: Actions pinneadas por SHA, actionlint, Dependabot, MVP documentado y orquestado.
 
-`clienteafirma/` es un clone de `https://github.com/ctt-gob-es/clienteafirma.git` (upstream CTT), **no** el meta-repo Autofirma-2026.
-
-## Qué hace falta para retomar `/repo-ending`
-
-1. Inicializar git en Autofirma-2026 **o** crear el repo en GitHub y clonar/vincular `origin`.
-2. Confirmar modo: **auditoría** | **remediación** | **cierre con publicación**.
-3. Declarar si el repo será **público/crítico**.
-
-### Confirmación pedida (mutación)
-
-**Acción** — `git init` + crear repo `Alexendros/Autofirma-2026` en GitHub y `git remote add origin …` (push inicial sin tags de release).
-**Impacto** — publica el árbol local (docs, scripts, clones si no están en `.gitignore`); sin cuidado puede subir `tools/` JDKs o `dist/` grandes.
-**Recuperación** — borrar el repo en GitHub; el working tree local permanece.
-**¿Sigo? (sí / no)**
-
-## Estado por fase (no ejecutadas)
+## Estado por fase
 
 | Fase | Estado | Notas |
 |---|---|---|
-| A. Etiquetado | BLOCK | Sin remoto |
-| B. Versionado | BLOCK | Sin remoto / sin tags |
-| C. Dependencias y docs | BLOCK | Sin remoto |
-| D. Pipeline | BLOCK | Workflow local existe pero no ha corrido en Actions |
-| E. Producción | N/A | Sin despliegue |
+| A. Etiquetado | GO parcial | Tags `v0.1.0` / `v0.1.1`; labels GitHub opcionales |
+| B. Versionado | GO | SemVer meta + `CHANGELOG.md`; producto = 1.9.1 en `BASELINE.txt` |
+| C. Dependencias y docs | GO | `SECURITY.md`, `LICENSE`, `docs/MVP.md`, Dependabot |
+| D. Pipeline | GO condicional | SHA pins + actionlint; **falta** branch protection en `master` (manual en settings) |
+| E. Producción | N/A | Sin despliegue de servicio; artefacto = JAR/DEB local + CI artifacts |
 
-## Observaciones previas (solo lectura del árbol)
+## Remediación aplicada (v0.1.1)
 
-- Workflow `.github/workflows/build-baseline.yml`: `uses: actions/*@v4` **sin SHA** → sería **BLOCK** en Fase D cuando exista el repo.
-- Jobs sin `permissions:` / `timeout-minutes` en varios sitios → **BLOCK** de línea mínima.
-- No hay `SECURITY.md`, `CHANGELOG.md` SemVer del meta-repo, ni tags.
+- `actions/checkout@3d3c42e5…` (#v7.0.1)
+- `actions/setup-java@de7274f0…` (#v6.0.1)
+- `actions/upload-artifact@043fb46d…` (#v7.0.1)
+- `actions/download-artifact@3e5f45b2…` (#v8.0.1)
+- Workflow `workflow-lint.yml` (actionlint 1.7.7 + checksums oficiales)
+- `.github/dependabot.yml`
+- `scripts/mvp.sh` + `docs/MVP.md`
 
-## [PENDIENTE]
+## Pendiente (no bloquea MVP)
 
-- Nombre exacto del repo GitHub y visibilidad (público/privado).
-- Modo deseado tras crear el remoto.
-- Si `clienteafirma/`, `integra/`, `fire/`, `tools/` deben versionarse o solo documentarse como clones.
+1. **Branch protection** en `master`: require PR, require status checks (`build-linux-jdk8`, `f2-vectors`, `actionlint`).
+2. Security Advisories privadas (settings del repo).
+3. Oleada 2: SpongyCastle → BC (upstream #572).
+4. Issue Integr@ AF2026-6 si se abre tracking formal.
+
+## Cómo reproducir el MVP
+
+```bash
+bash scripts/mvp.sh
+```
+
+Evidencia en `dist/MVP-EVIDENCE.txt`. Detalle: [MVP.md](MVP.md).

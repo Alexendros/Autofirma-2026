@@ -4,6 +4,8 @@ Meta-repositorio comunitario sobre el [Cliente @firma / Autofirma](https://githu
 
 **Objetivo rector:** un cliente **construible, auditable y sustituible** respecto a Autofirma **1.9.x** — mismos formatos de firma, mismo protocolo `afirma://`, reintegración upstream. No sustituye la plataforma `@firma` ni VALIDe.
 
+**MVP operativo:** [docs/MVP.md](docs/MVP.md) — un comando: `bash scripts/mvp.sh`
+
 [![License: GPL-2.0+ OR EUPL-1.1](https://img.shields.io/badge/license-GPL--2.0%2B%20%7C%20EUPL--1.1-blue.svg)](LICENSE)
 [![Baseline](https://img.shields.io/badge/baseline-Autofirma%201.9.1-informational.svg)](docs/BASELINE.txt)
 [![Upstream](https://img.shields.io/badge/upstream-ctt--gob--es%2Fclienteafirma-success.svg)](https://github.com/ctt-gob-es/clienteafirma)
@@ -77,24 +79,17 @@ Clones locales recomendados (no versionados): `clienteafirma`, `integra`, `fire`
 ## Arranque rápido
 
 ```bash
-# 1) Toolchain portátil (ejemplo)
-#    Temurin 8 + 21 y Maven 3.9.x bajo ./tools/
+# MVP: clona baseline, construye, valida F2, deja evidencia en dist/
+bash scripts/mvp.sh
 
-# 2) Código upstream
-git clone --depth 1 https://github.com/ctt-gob-es/clienteafirma.git clienteafirma
-
-# 3) Build línea base
-export JAVA_HOME=$PWD/tools/jdk8
-export PATH=$PWD/tools/apache-maven-3.9.9/bin:$JAVA_HOME/bin:$PATH
-cd clienteafirma && mvn -B clean install -DskipTests -Denv=install && cd ..
-
-# 4) Vectores + validación
-bash scripts/f2-regression.sh
-cd tests/validation-harness && mvn -B test -Dvectors.dir=$PWD/../../vectors && cd ../..
-# o todo el pipeline: bash scripts/f2-validate.sh
+# O paso a paso:
+# 1) Toolchain: Temurin 8 (+ Maven) bajo ./tools/ o del sistema
+# 2) git clone https://github.com/ctt-gob-es/clienteafirma.git clienteafirma
+# 3) mvn -B clean install -DskipTests -Denv=install  (en clienteafirma, JDK 8)
+# 4) bash scripts/f2-validate.sh
 ```
 
-Más detalle: [docs/VALIDATION-TESTS.md](docs/VALIDATION-TESTS.md), [docs/SETUP.md](docs/SETUP.md).
+Más detalle: [docs/MVP.md](docs/MVP.md), [docs/VALIDATION-TESTS.md](docs/VALIDATION-TESTS.md), [docs/SETUP.md](docs/SETUP.md).
 
 ---
 
@@ -102,6 +97,7 @@ Más detalle: [docs/VALIDATION-TESTS.md](docs/VALIDATION-TESTS.md), [docs/SETUP.
 
 | Documento | Para qué |
 |-----------|----------|
+| [docs/MVP.md](docs/MVP.md) | Definición y arranque del MVP operativo |
 | [docs/CIUDADANO.md](docs/CIUDADANO.md) | Qué firma el programa y qué no |
 | [docs/SETUP.md](docs/SETUP.md) | Entorno, clones y builds |
 | [docs/ESTADO-FASES.md](docs/ESTADO-FASES.md) | Estado F0–F10 |
