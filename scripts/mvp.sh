@@ -116,8 +116,12 @@ echo "==> JAR OK: $JAR"
 mkdir -p "$ROOT/dist"
 sha256sum "$JAR" | tee "$ROOT/dist/MVP-SHA256.txt"
 
-echo "==> Puerta F2 (vectores + harness)"
-bash "$ROOT/scripts/f2-validate.sh"
+echo "==> Puerta F2 (misma que CI: regression + harness JUnit)"
+bash "$ROOT/scripts/f2-regression.sh"
+(
+  cd "$ROOT/tests/validation-harness"
+  mvn -B test -Dvectors.dir="$ROOT/vectors"
+)
 
 if [[ "$SKIP_PACKAGE" -eq 0 ]]; then
   if [[ -x "$ROOT/scripts/f6-package-linux.sh" ]]; then
