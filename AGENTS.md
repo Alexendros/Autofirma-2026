@@ -12,6 +12,7 @@
 - Remoto público: `https://github.com/Alexendros/Autofirma-2026`; rama por defecto `master`.
 - Clones locales `clienteafirma/`, `integra/`, `fire/`, toolchains en `tools/` y `dist/` están en `.gitignore` y no van al meta-repo.
 - CI debe hacer checkout de `ctt-gob-es/clienteafirma` en el SHA de `docs/BASELINE.txt` (línea 1.9.1); no asumir el árbol local `clienteafirma/` en Actions.
+- Fachada P0 del meta-repo: `make quality` / `make test` / `make smoke` (no clona ni construye `clienteafirma`). Jobs homónimos en `.github/workflows/ci.yml`.
 - Programa por fases F0–F10; estado en `docs/ESTADO-FASES.md`; manifiesto en `propuesta-autofirma-2026.md`.
 - Migración SpongyCastle→BouncyCastle aplazada hasta F2 verde; no endurecer TLS/`disableSslChecks` por defecto sin preferencia explícita.
 - Seguimiento upstream: issue `ctt-gob-es/clienteafirma#572`; licencia conservada GPL-2.0+ / EUPL-1.1.

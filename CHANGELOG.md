@@ -8,6 +8,10 @@ The Autofirma **product** version remains **1.9.1** (see `docs/BASELINE.txt`).
 
 ## [Unreleased]
 
+### Added
+
+- Alineación P0 al contrato de repositorio (CODEOWNERS, plantillas issue/PR, CI `quality`/`test`/`smoke`, Make fachada, meta-secciones). Dependabot existente se conserva; no se añade Renovate.
+
 ### Planned
 
 - Session EN 301 549 with Orca on the three signing flows (physical AT)

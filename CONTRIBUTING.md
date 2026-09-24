@@ -1,5 +1,13 @@
 # Contributing to Autofirma-2026
 
+### Propósito de este documento
+
+- **Objetivos:** Explicar setup, flujo de rama/PR y reglas para contribuir sin romper formatos Autofirma 1.9.x ni el protocolo `afirma://`.
+- **Estructura:** Principios → workflow → commits → qué no commitear → conducta.
+- **Contenido a integrar según contexto:** Adapta Make y scripts de este meta-repo. No copies un flujo npm/monorepo. El build de `clienteafirma` y `scripts/f2-regression.sh` viven en `build-baseline`; no son required del job `test` ligero.
+
+Idioma: este fichero, `README.md` y `docs/` en español cuando el lector es ciudadano o contribuidor. Identificadores de CI y nombres de jobs en inglés (`quality`, `test`, `smoke`).
+
 ## Principles
 
 1. **Do not break** Autofirma 1.9.x formats or `afirma://` without F2 vectors green.
@@ -10,9 +18,10 @@
 ## Workflow
 
 1. Fork / branch from `master`.
-2. For crypto or packaging changes: run `bash scripts/f2-regression.sh` and `cd tests/validation-harness && mvn -B test -Dvectors.dir=$PWD/../../vectors`.
-3. Open a PR against this meta-repo with a short “why” and link to the phase (F1–F10).
-4. English for CI identifiers and commit subjects is fine; Spanish for docs aimed at citizens is preferred.
+2. Always: `make quality && make test && make smoke` (fachada del meta-repo; no clona upstream).
+3. For crypto or packaging changes: run `bash scripts/f2-regression.sh` and `cd tests/validation-harness && mvn -B test -Dvectors.dir=$PWD/../../vectors` (requiere `autofirma.jar` de la línea base).
+4. Open a PR against this meta-repo with a short “why” and link to the phase (F1–F10).
+5. English for CI identifiers and commit subjects is fine; Spanish for docs aimed at citizens is preferred.
 
 ## Commit messages
 

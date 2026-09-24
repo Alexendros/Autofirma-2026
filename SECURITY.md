@@ -1,5 +1,11 @@
 # Security Policy
 
+### Propósito de este documento
+
+- **Objetivos:** Declarar versiones soportadas, el canal privado de avisos y la superficie (scripts, CI, harness, clones locales).
+- **Estructura:** Versiones soportadas → cobertura → cómo reportar → no-objetivos.
+- **Contenido a integrar según contexto:** Adapta versiones del meta-repo y el baseline 1.9.1. No copies la política de un SaaS. No pegues claves, P12 de producción ni tokens en issues públicos.
+
 ## Supported versions (meta-repo)
 
 | Version | Supported |
