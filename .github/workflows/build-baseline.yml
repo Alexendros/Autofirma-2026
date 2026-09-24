@@ -97,7 +97,7 @@ jobs:
         working-directory: tests/validation-harness
         env:
           VECTORS_DIR: ${{ github.workspace }}/vectors
-        run: mvn -B test -Dvectors.dir=${VECTORS_DIR}
+        run: mvn -B test -Dvectors.dir="${VECTORS_DIR}"
 
       - name: Upload vector manifest
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
