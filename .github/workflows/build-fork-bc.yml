@@ -1,0 +1,55 @@
+name: build-fork-bc
+
+# CI dual (W2): construye el fork BC sin sustituir el job baseline CTT.
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  FORK_REPO: Alexendros/clienteafirma
+  FORK_REF: crypto/bouncycastle-jdk18on
+
+permissions:
+  contents: read
+
+jobs:
+  build-fork-bc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout meta-repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Checkout fork BC
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ env.FORK_REPO }}
+          ref: ${{ env.FORK_REF }}
+          path: clienteafirma
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: "8"
+          cache: maven
+          cache-dependency-path: clienteafirma/pom.xml
+
+      - name: Full install (crypto + product JAR)
+        working-directory: clienteafirma
+        run: |
+          mvn -B clean install -Dmaven.test.skip=true
+          mvn -B install -Dmaven.test.skip=true -Denv=install
+
+      - name: Upload autofirma.jar (BC)
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: autofirma-jar-bc
+          path: clienteafirma/afirma-simple/target/autofirma.jar
+
+      - name: F2 regression (BC jar, same workspace)
+        env:
+          AUTOFIRMA_JAR: ${{ github.workspace }}/clienteafirma/afirma-simple/target/autofirma.jar
+        run: bash scripts/f2-regression.sh
