@@ -20,17 +20,19 @@ Preparados para Weblate: copiar este directorio como componente; no se ha montad
 
 ## Auditoría de los tres flujos (checklist)
 
-| Flujo | Teclado | Lector (Orca/NVDA) | Estado 2026-09-23 |
+| Flujo | Teclado | Lector (Orca/NVDA) | Estado 2026-09-24 |
 |-------|---------|--------------------|-------------------|
-| 1. Elegir certificado | Pendiente prueba en GUI | Pendiente | Código: diálogos con `AccessibleContext` / mnemónicos en preferencias y restauración; **falta sesión con Orca** |
-| 2. Introducir PIN | Pendiente | Pendiente | OT upstream ya añadió “pegar PIN”; verificar foco y anuncio del campo |
-| 3. Confirmar firma | Pendiente | Pendiente | `confirmToSign` con nombre/descripción accesible |
+| 1. Elegir certificado | Pendiente sesión GUI | Pendiente | Código: `AccessibleName/Description` en `JList` + nombre en botón abrir almacén |
+| 2. Introducir PIN | Pendiente | Pendiente | Código: `AccessibleName` en `JPasswordField` + descripción del panel (`JSEUIManager`) |
+| 3. Confirmar firma | Pendiente | Pendiente | Código: nombre/descripción en diálogo y checkbox «no volver a mostrar» |
 
-### Hallazgos de código (sin sesión de lector aún)
+### Checklist Orca imprimible (sesión física)
 
-- Uso extendido de `getAccessibleContext().setAccessibleName/Description` y `setMnemonic` en paneles de preferencias y restauración.
-- `packaging/portal-prueba/index.html` incluye `lang="es"` y `role="status"` (punto de partida WCAG para la página de invocación).
-- **Pendiente fechado:** sesión Orca + NVDA antes del informe EN 301 549 al 100 %. Fecha objetivo: al disponer de escritorio gráfico con ATK.
+1. Arrancar Orca + Autofirma con el JAR del fork (`a11y/signing-flows` o release).
+2. Flujo certificado: Tab entra en la lista; Orca anuncia «Lista de certificados»; flechas cambian ítem; Enter selecciona.
+3. Flujo PIN: foco en campo; anuncio del texto de prompt; Tab a Aceptar/Cancelar.
+4. Flujo confirmar: anuncio del título; checkbox anunciado; Aceptar/Cancelar alcanzables.
+5. Registrar fallos en issue; no bloquear build.
 
 ## Criterio de salida F7 (este ciclo)
 

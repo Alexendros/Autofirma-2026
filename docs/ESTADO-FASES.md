@@ -1,6 +1,7 @@
 # Autofirma-2026 — estado de fases
 
-**MVP operativo (meta v0.1.1):** [docs/MVP.md](MVP.md) — `bash scripts/mvp.sh`
+**MVP operativo (meta v0.1.1):** [docs/MVP.md](MVP.md) — `bash scripts/mvp.sh`  
+**v0.2.0:** fork BC `Alexendros/clienteafirma` @ `crypto/bouncycastle-jdk18on` + CI dual; ver [W2-BOUNCYCASTLE-PREFLIGHT.md](W2-BOUNCYCASTLE-PREFLIGHT.md)
 
 | Fase | Estado | Evidencia |
 |------|--------|-----------|

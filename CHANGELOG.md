@@ -10,8 +10,23 @@ The Autofirma **product** version remains **1.9.1** (see `docs/BASELINE.txt`).
 
 ### Planned
 
-- Session EN 301 549 with Orca on the three signing flows (F7)
-- SpongyCastle → BouncyCastle migration behind F2 gate (F4 / upstream #572)
+- Session EN 301 549 with Orca on the three signing flows (physical AT)
+- OpenPDF coordination (still blocked)
+
+## [0.2.0] — 2026-09-24
+
+### Added
+
+- Fork `Alexendros/clienteafirma` branch `crypto/bouncycastle-jdk18on` (BC **1.78.1** jdk18on); F2 verde local
+- CI dual `build-fork-bc` (baseline CTT permanece)
+- `strictSslChecks` opt-in (default false) on fork branch `prefs/strict-ssl`
+- A11y code patches on fork branch `a11y/signing-flows` + Orca checklist in F7
+- AppImage script `scripts/f6-appimage.sh`, Flatpak skeleton, Tomcat9 compose + `docs/F8-TRIFASICA-SMOKE.md`
+- Preflight `docs/W2-BOUNCYCASTLE-PREFLIGHT.md`
+
+### Security
+
+- SpongyCastle 1.58 replaced by maintained BouncyCastle in the fork (experimental until upstream merge)
 
 ## [0.1.1] — 2026-09-24
 
@@ -49,6 +64,7 @@ The Autofirma **product** version remains **1.9.1** (see `docs/BASELINE.txt`).
 - Integr@ full reactor blocked by legacy HTTP iText coordinate
 - Meta-repo does not vendor upstream source trees
 
-[Unreleased]: https://github.com/Alexendros/Autofirma-2026/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/Alexendros/Autofirma-2026/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Alexendros/Autofirma-2026/releases/tag/v0.2.0
 [0.1.1]: https://github.com/Alexendros/Autofirma-2026/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Alexendros/Autofirma-2026/releases/tag/v0.1.0
