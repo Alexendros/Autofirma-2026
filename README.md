@@ -1,5 +1,11 @@
 # Autofirma-2026
 
+### Propósito de este documento
+
+- **Objetivos:** Presentar el meta-repositorio, la comparativa con Autofirma oficial y el arranque (`scripts/mvp.sh`) a un contribuidor o ciudadano técnico.
+- **Estructura:** Objetivo rector → comparativa → contenido → arranque → documentación → versión → atribución.
+- **Contenido a integrar según contexto:** Conserva el stack (scripts Bash + harness Maven + vectores F2 + CI de línea base). No copies un README de SaaS. No prometas sustituir `@firma`, VALIDe, TS@, Port@firmas ni Cl@ve. Contratos operativos en [docs/MVP.md](docs/MVP.md) y [docs/ESTADO-FASES.md](docs/ESTADO-FASES.md).
+
 Meta-repositorio comunitario sobre el [Cliente @firma / Autofirma](https://github.com/ctt-gob-es/clienteafirma) del **CTT** (Agencia Estatal de Administración Digital).
 
 **Objetivo rector:** un cliente **construible, auditable y sustituible** respecto a Autofirma **1.9.x** — mismos formatos de firma, mismo protocolo `afirma://`, reintegración upstream. No sustituye la plataforma `@firma` ni VALIDe.
@@ -66,6 +72,7 @@ Meta-repositorio comunitario sobre el [Cliente @firma / Autofirma](https://githu
 |------|-------------|
 | [propuesta-autofirma-2026.md](propuesta-autofirma-2026.md) | Manifiesto / programa corregido |
 | [docs/](docs/) | Fases, inventario cripto, accesibilidad, upstream, ciudadano |
+| [Makefile](Makefile) | Fachada `quality` / `test` / `smoke` (no clona upstream) |
 | [scripts/](scripts/) | Build, vectores, validación, release, paquetes Linux |
 | [tests/validation-harness/](tests/validation-harness/) | Tests de integridad de firmas |
 | [vectors/](vectors/) | Entradas y manifiesto F2 (salidas regenerables) |
@@ -87,6 +94,15 @@ bash scripts/mvp.sh
 # 2) git clone https://github.com/ctt-gob-es/clienteafirma.git clienteafirma
 # 3) mvn -B clean install -DskipTests -Denv=install  (en clienteafirma, JDK 8)
 # 4) bash scripts/f2-validate.sh
+```
+
+Fachada local (no clona ni construye `clienteafirma`):
+
+```bash
+make quality
+make test
+make smoke
+# o: make validate
 ```
 
 Más detalle: [docs/MVP.md](docs/MVP.md), [docs/VALIDATION-TESTS.md](docs/VALIDATION-TESTS.md), [docs/SETUP.md](docs/SETUP.md).
