@@ -1,11 +1,13 @@
 # Autofirma-2026 — estado de fases
 
+**MVP operativo (meta v0.1.1):** [docs/MVP.md](MVP.md) — `bash scripts/mvp.sh`
+
 | Fase | Estado | Evidencia |
 |------|--------|-----------|
 | F0 Manifiesto | Hecho | `propuesta-autofirma-2026.md` |
 | F1 Línea base 1.9.1 | Hecho | `docs/BASELINE.txt`, `docs/build-f1.log` |
 | F2 Vectores | Hecho | `scripts/f2-regression.sh`, `vectors/` |
-| F3 Cadena suministro | Hecho | `.github/workflows/`, `dist/1.9.1-autofirma2026.0/` |
+| F3 Cadena suministro | Hecho | `.github/workflows/` (SHA pins), Dependabot, actionlint |
 | F4 Inventario cripto | Hecho | `docs/F4-INVENTARIO-CRIPTO.md` (migración BC aplazada) |
 | F5 JDK 21 runtime | Hecho | `docs/F5-JDK21.md` |
 | F6 Paquetes Linux | Hecho | `packaging/*.deb`, portal de prueba |
