@@ -9,7 +9,7 @@ on:
 
 env:
   FORK_REPO: Alexendros/clienteafirma
-  FORK_REF: crypto/bouncycastle-jdk18on
+  FORK_REF: master
 
 permissions:
   contents: read
