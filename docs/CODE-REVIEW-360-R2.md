@@ -84,13 +84,13 @@ Seguimiento vivo: [REMEDIATION-360.md](REMEDIATION-360.md) (`make remediation360
 
 | Prioridad | Ítem | ID | Estado remediación |
 |-----------|------|-----|--------------------|
-| P0 | Endurecer parsers XML con `SecureXmlBuilder` | SEC-007, SEC-008 | Cerrado en clone local (W2; sin push remoto) |
-| P0 | Branch protection + alinear CHANGELOG/Renovate | SEC-003, SEC-004 | SEC-004 hecho; SEC-003 checklist humano |
+| P0 | Endurecer parsers XML con `SecureXmlBuilder` | SEC-007, SEC-008 | **Hecho** en fork [Alexendros/clienteafirma#4](https://github.com/Alexendros/clienteafirma/pull/4) @ `fee3debe1` |
+| P0 | Branch protection + alinear CHANGELOG/Renovate | SEC-003, SEC-004 | **Hecho** |
 | P1 | Wrapper `.deb` sin `JAVA_BIN` absoluto | SEC-002 | Hecho (W1) |
 | P1 | Preferencia TLS estricta documentada (sin default) | SEC-001 | Docs (W3); default intacto |
-| P2 | Política de plugins firmados / aviso fuerte | SEC-009 | Diferido W4 |
+| P2 | Política de plugins firmados / aviso fuerte | SEC-009 | Docs en REMEDIATION W4; código diferido |
 | P2 | `mvp.sh --require-package` + aserto SpongyCastle=0 | SEC-010, SEC-011 | Hecho (W1) |
-| P3 | OpenPDF / Integr@ iText | SEC-005, SEC-006 | Diferido W4 |
+| P3 | OpenPDF / Integr@ iText | SEC-005, SEC-006 | Diferido W4 (externo) |
 
 ---
 
