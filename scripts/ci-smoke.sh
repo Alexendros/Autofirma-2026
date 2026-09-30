@@ -21,6 +21,9 @@ ok "dnie-hardware-check.sh"
 presence=(
   docs/MVP.md
   docs/ESTADO-FASES.md
+  docs/CODE-REVIEW-360.md
+  docs/CODE-REVIEW-360-R2.md
+  docs/REMEDIATION-360.md
   docs/VALIDATION-TESTS.md
   docs/SETUP.md
   docs/CIUDADANO.md
@@ -31,6 +34,7 @@ presence=(
   packaging/triphase-compose/docker-compose.yml
   .github/workflows/build-baseline.yml
   .github/workflows/workflow-lint.yml
+  scripts/verify-remediation-360.sh
 )
 
 for f in "${presence[@]}"; do

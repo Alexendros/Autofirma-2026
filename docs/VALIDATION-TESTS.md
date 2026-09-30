@@ -37,3 +37,26 @@ Criterio de aceptación del harness: la firma no está corrupta ni desalineada c
 | `afirma-crypto-validation` | 11 tests, 0 fallos |
 | `afirma-crypto-cades` | 24 tests (1 skipped), 0 fallos |
 | `afirma-crypto-pdf` (filtro sin Baseline/DNIe) | 31 tests (4 skipped), 0 fallos |
+
+---
+
+## Gates de seguridad e integridad (post-auditoría 360)
+
+Playbook: [REMEDIATION-360.md](REMEDIATION-360.md). Criterio vivo: `make validate && make remediation360`.
+
+| Extremo | Gate | Comando / aserto |
+|---------|------|------------------|
+| Meta | Empaquetado portable (SEC-002) | Wrapper de `f6-package-linux.sh` no embebe path `tools/jdk` |
+| Meta | MVP release (SEC-010) | `mvp.sh --require-package` falla si falla el empaquetado |
+| Meta | Docs supply-chain (SEC-004) | CHANGELOG menciona Renovate; existe `.github/renovate.json` |
+| Meta+clone | Anti-regresión SC (SEC-011) | `rg org.spongycastle` en `clienteafirma` = 0 |
+| Fork | XXE cerrado (SEC-007/008) | Sinks de usuario/servidor usan `SecureXmlBuilder` |
+| Fork | Controles intactos | `UrlParameters` bloquea localhost; `PdfSignResult` / `XmpHelper` siguen seguros |
+| Ops | Branch protection (SEC-003) | Checklist manual en el playbook (no Make) |
+
+```bash
+make remediation360
+# Evidencia: dist/REMEDIATION-360-EVIDENCE.txt
+```
+
+Las auditorías R1/R2 (`make review360`, `make review360-r2`) quedan como ancla histórica; tras remediación, sus asertos de ítems cerrados comprueban la mitigación.

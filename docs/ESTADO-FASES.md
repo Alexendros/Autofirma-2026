@@ -1,7 +1,10 @@
 # Autofirma-2026 — estado de fases
 
 **MVP operativo (meta v0.1.1):** [docs/MVP.md](MVP.md) — `bash scripts/mvp.sh`  
-**v0.2.0:** fork BC `Alexendros/clienteafirma` @ `crypto/bouncycastle-jdk18on` + CI dual; ver [W2-BOUNCYCASTLE-PREFLIGHT.md](W2-BOUNCYCASTLE-PREFLIGHT.md)
+**v0.2.0:** fork BC `Alexendros/clienteafirma` @ `crypto/bouncycastle-jdk18on` + CI dual; ver [W2-BOUNCYCASTLE-PREFLIGHT.md](W2-BOUNCYCASTLE-PREFLIGHT.md)  
+**Revisión 360º (2026-09-30):** [CODE-REVIEW-360.md](CODE-REVIEW-360.md) — `bash scripts/verify-code-review-360.sh`  
+**Revisión 360º R2 estricta:** [CODE-REVIEW-360-R2.md](CODE-REVIEW-360-R2.md) — `make review360-r2`  
+**Remediación 360º:** [REMEDIATION-360.md](REMEDIATION-360.md) — `make remediation360`
 
 | Fase | Estado | Evidencia |
 |------|--------|-----------|

@@ -23,6 +23,16 @@ Idioma: este fichero, `README.md` y `docs/` en español cuando el lector es ciud
 4. Open a PR against this meta-repo with a short “why” and link to the phase (F1–F10).
 5. English for CI identifiers and commit subjects is fine; Spanish for docs aimed at citizens is preferred.
 
+### Pre-commit (Husky)
+
+Opcional pero recomendado en clones de desarrollo del **meta-repo**:
+
+```bash
+npm install   # instala husky; no es runtime del producto Autofirma
+```
+
+El hook `.husky/pre-commit` ejecuta `make quality` (bash -n + shellcheck si está instalado) antes de cada commit. CI sigue siendo la fuente de verdad (`quality` / `test` / `smoke`). Sin `npm install`, los commits funcionan igual; solo no hay gate local.
+
 ## Commit messages
 
 Conventional Commits encouraged:

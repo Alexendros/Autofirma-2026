@@ -40,14 +40,21 @@ Hallazgo en [`SslSecurityManager.java`](../clienteafirma/afirma-core/src/main/ja
 2. Vectores F2 + prueba de portal F6.
 3. Documentación ciudadana del cambio.
 
-## 4. Criterio de salida de F4 (cumplido)
+## 6. Preferencia TLS estricta (opt-in; remediación SEC-001)
+
+- **Default intacto:** no se cambia `disableSslChecks` / uso de `DUMMY_TRUST_MANAGER` por defecto (rompe sedes).
+- **Opt-in en el fork:** trabajo en rama `prefs/strict-ssl` con preferencia `strictSslChecks` (**default false**). Activar solo en entornos controlados.
+- **Playbook:** [REMEDIATION-360.md](REMEDIATION-360.md) W3.
+- **No hacer:** activar trust estricto en builds de distribución ciudadana sin campaña de compatibilidad.
+
+## 7. Criterio de salida de F4 (cumplido)
 
 - [x] Inventario SpongyCastle / iText / TLS
 - [x] OpenPDF: bloqueado → informe; no se duplica `openpdf-afirma`
 - [x] Migración BC aplazada con condición: rama + F2 verde
 - [x] Revocación TLS: documentada; sin cambio de default
 
-## 5. Próximo intento de migración BC (checklist)
+## 8. Próximo intento de migración BC (checklist)
 
 1. Rama `crypto/bouncycastle-jdk18on` desde baseline.
 2. Sustituir coordenadas Maven y `org.spongycastle` → `org.bouncycastle`.

@@ -1,0 +1,17 @@
+{
+  "name": "autofirma-2026",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Meta-repo Autofirma-2026 — husky hooks only (no Node runtime for the product)",
+  "scripts": {
+    "prepare": "husky",
+    "quality": "make quality",
+    "validate": "make validate"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

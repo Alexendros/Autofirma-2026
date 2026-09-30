@@ -10,12 +10,18 @@ The Autofirma **product** version remains **1.9.1** (see `docs/BASELINE.txt`).
 
 ### Added
 
-- Alineación P0 al contrato de repositorio (CODEOWNERS, plantillas issue/PR, CI `quality`/`test`/`smoke`, Make fachada, meta-secciones). Dependabot existente se conserva; no se añade Renovate.
+- Remediación 360º: playbook `docs/REMEDIATION-360.md`, gates `make remediation360`, wrapper `.deb` portable, `mvp.sh --require-package`, parsers XML del fork local endurecidos con `SecureXmlBuilder` (sin push remoto en esta tanda).
+- Husky 9 pre-commit (`make quality`) para clones del meta-repo; `npm install` opcional (ver CONTRIBUTING).
+
+### Changed
+
+- Cadena de suministro del meta-repo: el gestor activo de actualizaciones es **Renovate** (`.github/renovate.json`, automerge de patch/pin/digest). Dependabot figura en releases históricas; no es el flujo operativo actual. Vigilar PRs de digests de Actions con automerge.
 
 ### Planned
 
 - Session EN 301 549 with Orca on the three signing flows (physical AT)
 - OpenPDF coordination (still blocked)
+- Branch protection: require pull request reviews on `master` (checks already required)
 
 ## [0.2.0] — 2026-09-24
 

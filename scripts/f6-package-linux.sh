@@ -15,15 +15,15 @@ mkdir -p "$STAGE/DEBIAN" \
   "$STAGE/usr/share/doc/autofirma"
 
 cp -f "$JAR" "$STAGE/usr/lib/Autofirma/autofirma.jar"
-# Prefer JDK 21 if present in our tools tree for the wrapper
-JAVA_BIN="java"
-if [[ -x "$ROOT/tools/jdk21/bin/java" ]]; then
-  JAVA_BIN="$ROOT/tools/jdk21/bin/java"
-fi
-
-cat > "$STAGE/usr/bin/autofirma" <<EOF
+# Portable wrapper: never embed build-machine paths (tools/jdk*).
+# Runtime uses java from PATH, falling back to /usr/bin/java.
+cat > "$STAGE/usr/bin/autofirma" <<'EOF'
 #!/bin/bash
-exec "$JAVA_BIN" -Djdk.tls.maxHandshakeMessageSize=65536 -jar /usr/lib/Autofirma/autofirma.jar "\$@"
+JAVA_BIN="java"
+if ! command -v java >/dev/null 2>&1 && [[ -x /usr/bin/java ]]; then
+  JAVA_BIN="/usr/bin/java"
+fi
+exec "$JAVA_BIN" -Djdk.tls.maxHandshakeMessageSize=65536 -jar /usr/lib/Autofirma/autofirma.jar "$@"
 EOF
 chmod 755 "$STAGE/usr/bin/autofirma"
 
