@@ -15,6 +15,7 @@ Cada mejora **genérica** de F4–F8 se ofrece como PR a [ctt-gob-es/clienteafir
 | AF2026-4 | Parches PAdES → openpdf-afirma | ctt-gob-es/openpdf-afirma | Coordinar | No duplicar fork |
 | AF2026-5 | Accesibilidad EN 301 549 (3 flujos) | clienteafirma | Tras sesión Orca (F7) | |
 | AF2026-6 | Integr@ iText 2.2 HTTP blocker | ctt-gob-es/integra | **Candidato a issue** | Sustituir repo HTTP / coordenada iText |
+| AF2026-7 | SecureXmlBuilder en sinks XXE (hash/OOXML/triphase) | Alexendros/clienteafirma | **Hecho** — [#4](https://github.com/Alexendros/clienteafirma/pull/4) @ `fee3debe1` | Sin PR a CTT en esta tanda; SEC-007/008 |
 
 ## Primer aporte
 

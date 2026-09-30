@@ -15,14 +15,14 @@ Convertir SEC-001…011 en oleadas ejecutables con dueño (meta | fork | ops-man
 2. Aplicar el cambio mínimo que cierra el sink (o documentar checklist si es ops-manual).
 3. Añadir/actualizar aserto positivo en `scripts/verify-remediation-360.sh`.
 4. Evidencia en `dist/REMEDIATION-360-EVIDENCE.txt`.
-5. Sin push remoto al fork ni mutaciones de GitHub Settings sin confirmación explícita.
+5. Push al fork o mutaciones de GitHub Settings: solo tras confirmación explícita (cumplido para XXE en `Alexendros/clienteafirma` @ `fee3debe1`, 2026-09-30).
 
 ### Extremos
 
 | Extremo | Árbol | Qué se toca |
 |---------|-------|-------------|
 | **Meta** | este repo | scripts, packaging, CI Make, CHANGELOG, Renovate docs, gates |
-| **Fork** | `clienteafirma/` local (`Alexendros/clienteafirma`) | parsers XML (SEC-007/008); sin push hasta sí del mantenedor |
+| **Fork** | `clienteafirma/` local (`Alexendros/clienteafirma`) | parsers XML (SEC-007/008); aterrizado en fork `master` |
 | **Ops-manual** | GitHub Settings | branch protection (SEC-003) |
 
 ### Herramientas
@@ -46,11 +46,11 @@ Convertir SEC-001…011 en oleadas ejecutables con dueño (meta | fork | ops-man
 | SEC-004 | W1 | meta | `CHANGELOG.md` alinea Renovate (+ vigilancia automerge) | Gate `FIX-004`: CHANGELOG menciona Renovate; existe `.github/renovate.json` | **Hecho** |
 | SEC-010 | W1 | meta | `scripts/mvp.sh --require-package` | Gate `FIX-010`: flag documentado; modo fail-closed disponible | **Hecho** |
 | SEC-011 | W1 | meta+clone | aserto SpongyCastle=0 | Gate `FIX-011`: `org.spongycastle` = 0 en clone | **Hecho** (exige clone) |
-| SEC-007 | W2 | fork | `XmlHashDocument`, `ContentTypeManager` → `SecureXmlBuilder` | Gate `FIX-007*` | **Hecho** (local; sin push) |
-| SEC-008 | W2 | fork | `XAdESTriPhaseSignerUtil`, `XAdESTriPhaseSignerServerSide` → `SecureXmlBuilder` | Gate `FIX-008*` | **Hecho** (local; sin push) |
+| SEC-007 | W2 | fork | `XmlHashDocument`, `ContentTypeManager` → `SecureXmlBuilder` | Gate `FIX-007*` | **Hecho** — [Alexendros/clienteafirma#4](https://github.com/Alexendros/clienteafirma/pull/4) @ `fee3debe1` |
+| SEC-008 | W2 | fork | `XAdESTriPhaseSignerUtil`, `XAdESTriPhaseSignerServerSide` → `SecureXmlBuilder` | Gate `FIX-008*` | **Hecho** — mismo PR/SHA |
 | SEC-001 | W3 | meta docs | documentar `strictSslChecks` opt-in; **sin** cambiar default | Gate `FIX-001-DOC` en F4 + esta sección | **Hecho** (docs) |
 | SEC-003 | W3 | ops-manual | checklist branch protection | Checks + **require PR** activos (0 approvals; dismiss stale) | **Hecho** (2026-09-30) |
-| SEC-009 | W4 | fork (diferido) | política plugins firmados | Criterios en W4; sin código esta tanda | Diferido |
+| SEC-009 | W4 | fork/docs | política plugins (aviso trust; firma = futuro) | Sección W4 abajo | **Docs** (código diferido) |
 | SEC-005 | W4 | fork (diferido) | OpenPDF / iText | F4 / F10 | Diferido |
 | SEC-006 | W4 | frontera | Integr@ HTTP iText | F9 | Diferido |
 
@@ -80,7 +80,7 @@ Sustituir `DocumentBuilderFactory.newInstance()` en rutas de **parseo de entrada
 - `afirma-server-triphase-signer-core/.../XAdESTriPhaseSignerUtil.java`
 - `afirma-server-triphase-signer-core/.../XAdESTriPhaseSignerServerSide.java` (ambos parseos)
 
-Commit/push al remoto del fork: **solo tras confirmación explícita**.
+Commit/push al remoto del fork: **hecho** — [PR #4](https://github.com/Alexendros/clienteafirma/pull/4) mergeado (`fee3debe1`). No PR a `ctt-gob-es/clienteafirma` en esta tanda.
 
 ### W3 — Docs / ops sin default TLS
 
@@ -107,11 +107,19 @@ Rama por defecto: **`master`** (no existe `main`).
 
 Ya no hace falta reaplicar el PUT de protección salvo regresión.
 
-### W4 — Diferido (criterios, sin código)
+### W4 — Diferido / parcial
+
+#### SEC-009 — Política de plugins (docs; sin cambiar `PluginLoader`)
+
+- Los plugins se cargan con `URLClassLoader` desde un JAR elegido por el usuario (consentimiento UI).
+- **Regla operativa:** no instalar plugins de fuentes no confiables; tratar un JAR malicioso como RCE con el mismo privilegio que Autofirma.
+- **Futuro (código):** firma/hash de plugins, aviso UI más fuerte y/o lista blanca — fuera de esta tanda.
+- **No hacer ahora:** modificar `PluginLoader` sin diseño de UX + vectores.
+
+#### SEC-005 / SEC-006 (externos)
 
 | ID | Criterio de cierre futuro |
 |----|---------------------------|
-| SEC-009 | Política de plugins: aviso UI fuerte y/o hash/firma de JAR; lista blanca opcional |
 | SEC-005 | Coordinar `openpdf-afirma` sin duplicar fork; F2 PAdES verde |
 | SEC-006 | Integr@ sin Maven HTTP / iText 2.2 bloqueante (AF2026-6) |
 

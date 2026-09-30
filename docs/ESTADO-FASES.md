@@ -4,7 +4,8 @@
 **v0.2.0:** fork BC `Alexendros/clienteafirma` @ `crypto/bouncycastle-jdk18on` + CI dual; ver [W2-BOUNCYCASTLE-PREFLIGHT.md](W2-BOUNCYCASTLE-PREFLIGHT.md)  
 **Revisión 360º (2026-09-30):** [CODE-REVIEW-360.md](CODE-REVIEW-360.md) — `bash scripts/verify-code-review-360.sh`  
 **Revisión 360º R2 estricta:** [CODE-REVIEW-360-R2.md](CODE-REVIEW-360-R2.md) — `make review360-r2`  
-**Remediación 360º:** [REMEDIATION-360.md](REMEDIATION-360.md) — `make remediation360`
+**Remediación 360º:** [REMEDIATION-360.md](REMEDIATION-360.md) — `make remediation360`  
+**XXE fork:** [Alexendros/clienteafirma#4](https://github.com/Alexendros/clienteafirma/pull/4) @ `fee3debe1`
 
 | Fase | Estado | Evidencia |
 |------|--------|-----------|
