@@ -49,7 +49,7 @@ Convertir SEC-001…011 en oleadas ejecutables con dueño (meta | fork | ops-man
 | SEC-007 | W2 | fork | `XmlHashDocument`, `ContentTypeManager` → `SecureXmlBuilder` | Gate `FIX-007*` | **Hecho** (local; sin push) |
 | SEC-008 | W2 | fork | `XAdESTriPhaseSignerUtil`, `XAdESTriPhaseSignerServerSide` → `SecureXmlBuilder` | Gate `FIX-008*` | **Hecho** (local; sin push) |
 | SEC-001 | W3 | meta docs | documentar `strictSslChecks` opt-in; **sin** cambiar default | Gate `FIX-001-DOC` en F4 + esta sección | **Hecho** (docs) |
-| SEC-003 | W3 | ops-manual | checklist branch protection | Checks `quality`/`test`/`smoke` **ya activos**; falta require PR reviews | **Parcial** (reviews pendiente) |
+| SEC-003 | W3 | ops-manual | checklist branch protection | Checks + **require PR** activos (0 approvals; dismiss stale) | **Hecho** (2026-09-30) |
 | SEC-009 | W4 | fork (diferido) | política plugins firmados | Criterios en W4; sin código esta tanda | Diferido |
 | SEC-005 | W4 | fork (diferido) | OpenPDF / iText | F4 / F10 | Diferido |
 | SEC-006 | W4 | frontera | Integr@ HTTP iText | F9 | Diferido |
@@ -118,7 +118,7 @@ gh api -X PUT repos/Alexendros/Autofirma-2026/branches/master/protection \
   --input protection-payload.json
 ```
 
-Anótalo aquí cuando reviews queden activas: `_pendiente reviews_`.
+Anótalo aquí cuando reviews queden activas: **activo 2026-09-30** (`required_approving_review_count: 0`, dismiss stale, checks `quality`/`test`/`smoke`, `enforce_admins`).
 
 ### W4 — Diferido (criterios, sin código)
 
