@@ -95,30 +95,17 @@ Commit/push al remoto del fork: **solo tras confirmación explícita**.
 
 Rama por defecto: **`master`** (no existe `main`).
 
-Ya activo vía API (solo lectura verificada):
+**Activo** (verificado por API):
 
 - Required status checks: `quality`, `test`, `smoke` (strict)
+- Require pull request before merging: sí (`required_approving_review_count: 0`)
+- Dismiss stale reviews: sí
 - `enforce_admins`: true
 - Linear history: true
 - Force push / deletions: false
 - Conversation resolution: true
 
-**Hueco:** `required_pull_request_reviews` está **ABSENT** — aún se puede empujar a `master` sin PR (con checks). Remediación propuesta (CLI, requiere sí explícito):
-
-1. Require a pull request before merging.
-2. Require at least 1 approving review (o 0 si eres el único mantenedor y prefieres solo PR + checks).
-3. Mantener required checks `quality` / `test` / `smoke`.
-4. Restrict force-push (ya false).
-
-Checklist humano / CLI:
-
-```bash
-# Tras sí del mantenedor — ejemplo (ajustar reviews)
-gh api -X PUT repos/Alexendros/Autofirma-2026/branches/master/protection \
-  --input protection-payload.json
-```
-
-Anótalo aquí cuando reviews queden activas: **activo 2026-09-30** (`required_approving_review_count: 0`, dismiss stale, checks `quality`/`test`/`smoke`, `enforce_admins`).
+Ya no hace falta reaplicar el PUT de protección salvo regresión.
 
 ### W4 — Diferido (criterios, sin código)
 
