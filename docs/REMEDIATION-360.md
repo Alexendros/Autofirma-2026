@@ -34,7 +34,8 @@ Convertir SEC-001…011 en oleadas ejecutables con dueño (meta | fork | ops-man
 | `make review360` / `review360-r2` | anclaje histórico R1/R2 (mitigaciones donde el ítem ya cerró) |
 | `bash scripts/mvp.sh` | MVP; `--require-package` para release fail-closed |
 | `scripts/f6-package-linux.sh` | wrapper `.deb` portable |
-| Archify `.archify/20260930-2150-code-review-360-r2/` | mapas de superficie (referencia; no gate de patch) |
+| Archify `.archify/20260930-2150-code-review-360-r2/` | mapas de superficie R2 (auditoría) |
+| Archify `.archify/20260930-2331-remediation-360-e2e/` | mapas post-remedio + hilos e2e (5/5 finalize=pass) |
 
 ---
 
@@ -145,8 +146,9 @@ Ya no hace falta reaplicar el PUT de protección salvo regresión.
 | [F4-INVENTARIO-CRIPTO.md](F4-INVENTARIO-CRIPTO.md) | TLS / SC / iText |
 | [F8-TRIFASICA.md](F8-TRIFASICA.md) | Contexto WAR lab (SEC-008) |
 | [F9-INTEGRA-FIRE.md](F9-INTEGRA-FIRE.md) | SEC-006 |
-| [REPO-ENDING-AUDIT.md](REPO-ENDING-AUDIT.md) | Branch protection pendiente |
-| [`.archify/20260930-2150-code-review-360-r2/`](../.archify/20260930-2150-code-review-360-r2/) | Mapas ataque |
+| [REPO-ENDING-AUDIT.md](REPO-ENDING-AUDIT.md) | Branch protection (require PR activo) |
+| [`.archify/20260930-2150-code-review-360-r2/`](../.archify/20260930-2150-code-review-360-r2/) | Mapas ataque R2 |
+| [`.archify/20260930-2331-remediation-360-e2e/`](../.archify/20260930-2331-remediation-360-e2e/) | Mapas post-remedio + e2e (5/5) |
 
 ---
 
@@ -156,6 +158,20 @@ Ya no hace falta reaplicar el PUT de protección salvo regresión.
 make validate
 make remediation360
 # Esperado: VERIFICACIÓN REMEDIATION OK … fail=0
+# E2E completo (JAR local):
+#   mvn -B clean install -Dmaven.test.skip=true && mvn -B install -Dmaven.test.skip=true -Denv=install
+#   bash scripts/f2-regression.sh
+#   bash scripts/f6-package-linux.sh
 ```
 
-Evidencia: `dist/REMEDIATION-360-EVIDENCE.txt`.
+Evidencia: `dist/REMEDIATION-360-EVIDENCE.txt`; e2e local `dist/E2E-F2-PKG.log` / `dist/E2E-BUILD.log`.
+
+### Mapas Archify e2e
+
+| Tipo | HTML |
+|------|------|
+| Architecture | [superficies-remediadas.html](../.archify/20260930-2331-remediation-360-e2e/architecture/superficies-remediadas.html) |
+| Workflow | [hilos-e2e.html](../.archify/20260930-2331-remediation-360-e2e/workflow/hilos-e2e.html) |
+| Sequence | [protocolo-mitigado.html](../.archify/20260930-2331-remediation-360-e2e/sequence/protocolo-mitigado.html) |
+| Dataflow | [xml-seguro.html](../.archify/20260930-2331-remediation-360-e2e/dataflow/xml-seguro.html) |
+| Lifecycle | [deuda-cerrada.html](../.archify/20260930-2331-remediation-360-e2e/lifecycle/deuda-cerrada.html) |

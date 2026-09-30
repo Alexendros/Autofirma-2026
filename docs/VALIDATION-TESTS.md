@@ -59,4 +59,6 @@ make remediation360
 # Evidencia: dist/REMEDIATION-360-EVIDENCE.txt
 ```
 
+E2E local post-remedio (2026-09-30): build Maven → `f2-regression` → harness → `f6-package` (wrapper portable) → gates. Suite Archify: `.archify/20260930-2331-remediation-360-e2e/`.
+
 Las auditorías R1/R2 (`make review360`, `make review360-r2`) quedan como ancla histórica; tras remediación, sus asertos de ítems cerrados comprueban la mitigación.
