@@ -1,3 +1,5 @@
+> **Archivado:** el canónico es [Alexendros/clienteafirma](https://github.com/Alexendros/clienteafirma). Este meta queda solo lectura.
+
 # Autofirma-2026 — estado de fases
 
 **MVP operativo (meta v0.1.1):** [docs/MVP.md](MVP.md) — `bash scripts/mvp.sh`  
