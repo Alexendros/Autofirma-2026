@@ -21,7 +21,10 @@ The Autofirma **product** version remains **1.9.1** (see `docs/BASELINE.txt`).
 
 - Session EN 301 549 with Orca on the three signing flows (physical AT)
 - OpenPDF coordination (still blocked)
-- Branch protection: require pull request reviews on `master` (checks already required)
+
+### Security
+
+- Branch protection on `master`: require pull request + status checks `quality`/`test`/`smoke` (2026-09-30)
 
 ## [0.2.0] — 2026-09-24
 

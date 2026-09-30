@@ -11,7 +11,7 @@
 - `gh auth`: Alexendros — OK
 - Rama por defecto: **`master`** (no hay `main`)
 - Tags existentes: `v0.1.0`, `v0.1.1`, `v0.2.0` — **sin tag nuevo** en esta oleada
-- Branch protection: checks `quality`/`test`/`smoke` **activos**; `required_pull_request_reviews` **ABSENT**
+- Branch protection: checks `quality`/`test`/`smoke` **activos**; **require pull request** activo (`required_approving_review_count: 0`, dismiss stale reviews, `enforce_admins`)
 
 ## Estado por fase
 
@@ -22,7 +22,7 @@
 | C. Dependencias y docs | OK | SECURITY.md presente; Renovate activo; Husky añadido (npm solo hooks) |
 | D. Pipeline | OK | `permissions` + `timeout-minutes` + SHA pins; actionlint workflow presente; CI reciente verde |
 | E. Producción | N/A | Sin despliegue de servicio |
-| F. Merge-watch | En curso | PR `chore/repo-ending-husky-20260930` |
+| F. Merge-watch | OK | PR #10 MERGED (`c14df8b`); branch protection con require PR aplicada |
 
 ## Bloqueos
 
@@ -31,7 +31,6 @@ Ningún BLOCK de pipeline para mergear remediación. Publicación de tag **no** 
 ## Avisos
 
 - WARN labels sin taxonomía ortogonal — no bloquea remediación; sí bloquea “cierre ceremonial completo” en repo crítico hasta mapear o aceptar excepción.
-- WARN `required_pull_request_reviews` ausente — checks sí obligan; falta exigir PR. Requiere sí explícito para mutar protection vía CLI.
 - WARN attestations/SLSA no configurados — no pedidos.
 
 ## Remediación de esta oleada
