@@ -16,3 +16,4 @@
 - Programa por fases F0–F10; estado en `docs/ESTADO-FASES.md`; manifiesto en `propuesta-autofirma-2026.md`.
 - Migración SpongyCastle→BouncyCastle aplazada hasta F2 verde; no endurecer TLS/`disableSslChecks` por defecto sin preferencia explícita.
 - Seguimiento upstream: issue `ctt-gob-es/clienteafirma#572`; licencia conservada GPL-2.0+ / EUPL-1.1.
+- Archify (mapas técnicos interactivos): skill en `~/.cursor/skills/archify`; CLI `node ~/.cursor/skills/archify/bin/archify.mjs`. Artefactos versionados bajo `.archify/` (suite canónica de 5 tipos: `architecture`, `workflow`, `sequence`, `dataflow`, `lifecycle`) con texto visible en **español sencillo**; `sources` y paths técnicos en inglés/forma de repo.
