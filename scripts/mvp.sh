@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # MVP operativo: clonar baseline, construir, validar vectores F2 y empaquetar evidencia.
-# Uso: bash scripts/mvp.sh [--skip-clone] [--skip-package]
+# Uso: bash scripts/mvp.sh [--skip-clone] [--skip-package] [--require-package]
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -8,12 +8,15 @@ cd "$ROOT"
 
 SKIP_CLONE=0
 SKIP_PACKAGE=0
+REQUIRE_PACKAGE="${REQUIRE_PACKAGE:-0}"
 for arg in "$@"; do
   case "$arg" in
     --skip-clone) SKIP_CLONE=1 ;;
     --skip-package) SKIP_PACKAGE=1 ;;
+    --require-package) REQUIRE_PACKAGE=1 ;;
     -h|--help)
-      echo "Uso: bash scripts/mvp.sh [--skip-clone] [--skip-package]"
+      echo "Uso: bash scripts/mvp.sh [--skip-clone] [--skip-package] [--require-package]"
+      echo "  --require-package  falla si el empaquetado Linux no completa (también REQUIRE_PACKAGE=1)"
       exit 0
       ;;
     *)
@@ -22,6 +25,11 @@ for arg in "$@"; do
       ;;
   esac
 done
+
+if [[ "$SKIP_PACKAGE" -eq 1 && "$REQUIRE_PACKAGE" -eq 1 ]]; then
+  echo "Incompatible: --skip-package y --require-package" >&2
+  exit 2
+fi
 
 BASELINE_FILE="$ROOT/docs/BASELINE.txt"
 if [[ ! -f "$BASELINE_FILE" ]]; then
@@ -125,8 +133,16 @@ bash "$ROOT/scripts/f2-regression.sh"
 
 if [[ "$SKIP_PACKAGE" -eq 0 ]]; then
   if [[ -x "$ROOT/scripts/f6-package-linux.sh" ]]; then
-    echo "==> Empaquetado Linux (best-effort)"
-    bash "$ROOT/scripts/f6-package-linux.sh" || echo "Aviso: empaquetado falló (no bloquea MVP)."
+    if [[ "$REQUIRE_PACKAGE" -eq 1 ]]; then
+      echo "==> Empaquetado Linux (obligatorio)"
+      bash "$ROOT/scripts/f6-package-linux.sh"
+    else
+      echo "==> Empaquetado Linux (best-effort; use --require-package para fallar si falla)"
+      bash "$ROOT/scripts/f6-package-linux.sh" || echo "Aviso: empaquetado falló (no bloquea MVP)."
+    fi
+  elif [[ "$REQUIRE_PACKAGE" -eq 1 ]]; then
+    echo "Falta scripts/f6-package-linux.sh y se pidió --require-package" >&2
+    exit 1
   fi
 fi
 

@@ -13,7 +13,7 @@ Este MVP no sustituye la descarga oficial ni la plataforma `@firma`. Ofrece lo q
 | JAR Autofirma | `clienteafirma/afirma-simple/target/autofirma.jar` |
 | No-regresión firma | `scripts/f2-validate.sh` (vectores + harness) |
 | Empaquetado Linux | `scripts/f6-package-linux.sh` / `packaging/` |
-| Cadena de suministro CI | Actions **pinneadas por SHA**, Dependabot, actionlint |
+| Cadena de suministro CI | Actions **pinneadas por SHA**, Renovate (meta), actionlint |
 | Evidencia local | `dist/MVP-EVIDENCE.txt` tras `scripts/mvp.sh` |
 
 ## Arranque en un comando
@@ -27,6 +27,7 @@ Opciones:
 
 - `--skip-clone` si ya tienes `clienteafirma` en el SHA de baseline
 - `--skip-package` si solo quieres build + F2
+- `--require-package` (o `REQUIRE_PACKAGE=1`) para fallar si el empaquetado Linux no completa
 
 ## Contra el desfase oficial (hechos, no eslóganes)
 

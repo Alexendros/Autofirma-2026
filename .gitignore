@@ -15,3 +15,5 @@ docs/*.log
 *.iml
 *.pyc
 .DS_Store
+node_modules/
+

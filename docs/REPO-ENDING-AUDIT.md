@@ -1,45 +1,41 @@
-# Readiness report — Autofirma-2026 — 2026-09-24
+# Readiness report — Alexendros/Autofirma-2026 — 2026-09-30
 
-**Veredicto:** CONDITIONAL GO (MVP meta-repo)
+**Veredicto:** CONDITIONAL GO (remediación en curso; no publicación de tag)
 
-**Modo:** remediación parcial tras auditoría 2026-09-23  
-**Repo:** https://github.com/Alexendros/Autofirma-2026 (público)
+**Modo:** remediación (Husky + merge-watch + reforzar PR en `master`)  
+**Repo crítico:** sí — público con consumidores externos (meta-repo Autofirma)
 
 ## Resumen
 
-El bloqueo SEV-1 (sin git/remoto) está **resuelto**. CI de línea base existe y ha corrido en GitHub Actions. En **v0.1.1** se cierran los gaps de cadena de suministro del meta-repo: Actions pinneadas por SHA, actionlint, Dependabot, MVP documentado y orquestado.
+- Remoto: `https://github.com/Alexendros/Autofirma-2026.git` (GitHub) — OK
+- `gh auth`: Alexendros — OK
+- Rama por defecto: **`master`** (no hay `main`)
+- Tags existentes: `v0.1.0`, `v0.1.1`, `v0.2.0` — **sin tag nuevo** en esta oleada
+- Branch protection: checks `quality`/`test`/`smoke` **activos**; `required_pull_request_reviews` **ABSENT**
 
 ## Estado por fase
 
 | Fase | Estado | Notas |
 |---|---|---|
-| A. Etiquetado | GO parcial | Tags `v0.1.0` / `v0.1.1`; labels GitHub opcionales |
-| B. Versionado | GO | SemVer meta + `CHANGELOG.md`; producto = 1.9.1 en `BASELINE.txt` |
-| C. Dependencias y docs | GO | `SECURITY.md`, `LICENSE`, `docs/MVP.md`, Dependabot |
-| D. Pipeline | GO condicional | SHA pins + actionlint; **falta** branch protection en `master` (manual en settings) |
-| E. Producción | N/A | Sin despliegue de servicio; artefacto = JAR/DEB local + CI artifacts |
+| A. Etiquetado | WARN | Labels GitHub por defecto; taxonomía `type:`/`area:` no aplicada (sí aparte para mutar labels) |
+| B. Versionado | OK | SemVer meta; no se publica release en esta oleada |
+| C. Dependencias y docs | OK | SECURITY.md presente; Renovate activo; Husky añadido (npm solo hooks) |
+| D. Pipeline | OK | `permissions` + `timeout-minutes` + SHA pins; actionlint workflow presente; CI reciente verde |
+| E. Producción | N/A | Sin despliegue de servicio |
+| F. Merge-watch | En curso | PR `chore/repo-ending-husky-20260930` |
 
-## Remediación aplicada (v0.1.1)
+## Bloqueos
 
-- `actions/checkout@3d3c42e5…` (#v7.0.1)
-- `actions/setup-java@de7274f0…` (#v6.0.1)
-- `actions/upload-artifact@043fb46d…` (#v7.0.1)
-- `actions/download-artifact@3e5f45b2…` (#v8.0.1)
-- Workflow `workflow-lint.yml` (actionlint 1.7.7 + checksums oficiales)
-- `.github/dependabot.yml`
-- `scripts/mvp.sh` + `docs/MVP.md`
+Ningún BLOCK de pipeline para mergear remediación. Publicación de tag **no** solicitada.
 
-## Pendiente (no bloquea MVP)
+## Avisos
 
-1. **Branch protection** en `master`: require PR, require status checks (`build-linux-jdk8`, `f2-vectors`, `actionlint`).
-2. Security Advisories privadas (settings del repo).
-3. Oleada 2: SpongyCastle → BC (upstream #572).
-4. Issue Integr@ AF2026-6 si se abre tracking formal.
+- WARN labels sin taxonomía ortogonal — no bloquea remediación; sí bloquea “cierre ceremonial completo” en repo crítico hasta mapear o aceptar excepción.
+- WARN `required_pull_request_reviews` ausente — checks sí obligan; falta exigir PR. Requiere sí explícito para mutar protection vía CLI.
+- WARN attestations/SLSA no configurados — no pedidos.
 
-## Cómo reproducir el MVP
+## Remediación de esta oleada
 
-```bash
-bash scripts/mvp.sh
-```
-
-Evidencia en `dist/MVP-EVIDENCE.txt`. Detalle: [MVP.md](MVP.md).
+- Playbook + gates 360 + parches meta (ver `docs/REMEDIATION-360.md`)
+- Husky 9 pre-commit → `make quality`
+- Documentar estado real de branch protection
